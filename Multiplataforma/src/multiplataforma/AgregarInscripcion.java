@@ -81,6 +81,11 @@ public class AgregarInscripcion extends javax.swing.JInternalFrame {
 
         jBGuardar.setText("Guardar");
         jBGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,8 +141,43 @@ public class AgregarInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBMateriaActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+       String nombreAlumnoSeleccionado = (String) jCBAlumno.getSelectedItem();
+    String nombreMateriaSeleccionada = (String) jCBMateria.getSelectedItem();
+
+    // Buscar el alumno y la materia en los conjuntos
+    Alumno alumnoSeleccionado = null;
+    Materia materiaSeleccionada = null;
+
+    for (Alumno alumno : alumnos) {
+        if ((alumno.getApellido() + ", " + alumno.getNombre()).equals(nombreAlumnoSeleccionado)) {
+            alumnoSeleccionado = alumno;
+            break;
+        }
+    }
+
+    for (Materia materia : materias) {
+        if ((materia.getNombre() + ", " + materia.getAño()).equals(nombreMateriaSeleccionada)) {
+            materiaSeleccionada = materia;
+            break;
+        }
+    }
+
+    // Inscribir al alumno en la materia
+    if (alumnoSeleccionado != null && materiaSeleccionada != null) {
+        alumnoSeleccionado.inscribirMateria(materiaSeleccionada);
+        materiaSeleccionada.agregarAlumno(alumnoSeleccionado);
+
+        // Mostrar un mensaje de éxito
+        javax.swing.JOptionPane.showMessageDialog(this, "Inscripción guardada exitosamente.");
+    } else {
+        // Mostrar un mensaje de error
+        javax.swing.JOptionPane.showMessageDialog(this, "Error al inscribir. Verifique los datos.");
+    }
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

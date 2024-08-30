@@ -59,5 +59,9 @@ public class Alumno {
     public int cantidadMaterias() {
         return materiasInscripto.size();
     }
+    
+    public void inscribirMateria(Materia materia) {
+        materiasInscripto.add(materia);
+    }
 }
 

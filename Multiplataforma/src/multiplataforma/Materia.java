@@ -11,15 +11,20 @@ atributos.
  */
 package multiplataforma;
 
+import java.util.HashSet;
+
 public class Materia {
     private int idMateria;
     private String nombre;
     private int año;
+    private HashSet<Alumno> alumnosInscriptos;
 
     public Materia(int idMateria, String nombre, int año) {
         this.idMateria = idMateria;
         this.nombre = nombre;
         this.año = año;
+        this.alumnosInscriptos = new HashSet<>();
+        
     }
 
     // Getters y Setters
@@ -53,5 +58,9 @@ public class Materia {
         if (obj == null || getClass() != obj.getClass()) return false;
         Materia materia = (Materia) obj;
         return idMateria == materia.idMateria;
+    }
+    
+    public void agregarAlumno(Alumno alumno) {
+        alumnosInscriptos.add(alumno);
     }
 }
