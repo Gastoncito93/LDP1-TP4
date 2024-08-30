@@ -5,12 +5,15 @@
  */
 package multiplataforma;
 
+import java.util.HashSet;
+
 /**
  *
  * @author user
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+private static HashSet<Alumno> alumnos = new HashSet<>();
+    private static HashSet<Materia> materias = new HashSet<>();
     /**
      * Creates new form MenuPrincipal
      */
@@ -116,21 +119,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAlumnoActionPerformed
 
     private void jMIAgreAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgreAlumActionPerformed
-        AgregarAlumno alumno = new AgregarAlumno();
-        escritorio.add(alumno);
-        alumno.show();
+         AgregarAlumno agregarAlumno = new AgregarAlumno(alumnos);
+        escritorio.add(agregarAlumno);
+        agregarAlumno.setVisible(true);
     }//GEN-LAST:event_jMIAgreAlumActionPerformed
 
     private void jMIAgreInscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgreInscriActionPerformed
-        AgregarInscripcion inscripcion = new AgregarInscripcion();
-        escritorio.add(inscripcion);
-        inscripcion.show();
+        AgregarInscripcion agregarInscripcion = new AgregarInscripcion(alumnos, materias);
+        escritorio.add(agregarInscripcion);
+        agregarInscripcion.setVisible(true);
     }//GEN-LAST:event_jMIAgreInscriActionPerformed
 
     private void jMIAgreMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgreMatActionPerformed
-        AgregarMateria materia = new AgregarMateria();
-        escritorio.add(materia);
-        materia.show();
+        AgregarMateria agregarMateria = new AgregarMateria(materias);
+        escritorio.add(agregarMateria);
+        agregarMateria.setVisible(true);
     }//GEN-LAST:event_jMIAgreMatActionPerformed
 
     /**
